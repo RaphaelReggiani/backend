@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import UTC, datetime
 
 from sqlalchemy import DateTime, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
@@ -15,5 +15,5 @@ class Filme(Base):
     ano_lancamento: Mapped[int] = mapped_column(Integer, nullable=False)
     genero: Mapped[str] = mapped_column(String(100), nullable=False)
     criado_em: Mapped[datetime] = mapped_column(
-        DateTime, default=datetime.utcnow, nullable=False
+        DateTime, default=lambda: datetime.now(UTC), nullable=False
     )
